@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
               promise = textMhtml.then(function(result){
                 res = JSON.stringify(result);
                 var xhr = new XMLHttpRequest();
-                xhr.open("POST", "http://143.110.166.160:8000/api/caption");
+                xhr.open("POST", "http://localhost:8000/api/caption");
                 xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
                 xhr.setRequestHeader("Accept", "application/json");
                 xhr.onreadystatechange = function(){
