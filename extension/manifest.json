@@ -1,16 +1,26 @@
 {
-    "name" : "Getting stated example",
+    "name" : "SMARTLook",
     "version" : "1.0",
-    "description" : "Build an extension!",
+    "description" : "Converts iamges into text with machine learning",
     "manifest_version" : 2,
     "permissions" : ["storage", "declarativeContent", "activeTab"],
     "background" : {
         "scripts" : ["background.js"],
         "persistent" : false
     },
+    "icons":{
+        "16":"./images/logo_shape.png",
+        "32":"./images/logo_shape.png",
+        "128":"./images/logo_shape.png"
+    },
     "page_action" : 
     {
-        "default_popup" : "popup.html"
+        "default_popup" : "./popup.html",
+        "default_icon": {
+            "16": "./images/logo_shape.png",
+            "128": "./images/logo_shape.png"
+        }
+
     },
     "options_page" : "options.html"
 }
