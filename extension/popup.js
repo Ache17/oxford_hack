@@ -12,9 +12,20 @@ document.addEventListener('DOMContentLoaded', function() {
           var tab = array_of_Tabs[0];
           console.log("submitMHTML() found the active tab has an ID of " + tab.id);
           chrome.pageCapture.saveAsMHTML({tabId: tab.id}, function(mhtml) {
-              //const html = mhtml2html.convert(mhtml);
-              console.log(mhtml.text())
-              console.log("submitMHTML() sent mhtml to server");
+              var textMhtml = mhtml.text();
+              var res;
+              promise = textMhtml.then(function(result){
+                res = JSON.stringify(result);
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "http://143.110.166.160:8000/api/caption");
+                xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                xhr.setRequestHeader("Accept", "application/json");
+                xhr.onreadystatechange = function(){
+                  console.log(this.responseText);
+                }
+                xhr.send(JSON.stringify({"mhtml": res}));
+                console.log("submitMHTML() sent mhtml to server");
+              });
             }
           )
         }
