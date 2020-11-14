@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify, request
 from flask_restful import Resource, Api, reqparse
 from random import choice
 
@@ -10,10 +10,10 @@ api = Api(app)
 parser = reqparse.RequestParser()
 
 imageCaptionPOSTParser = reqparse.RequestParser()
-imageCaptionPOSTParser.add_argument("website", type=list, help="please include 'website' with source of the html to caption", required=True)
+imageCaptionPOSTParser.add_argument("website", type=str, help="please include 'website' with source of the html to caption", required=True)
 
 imageCaptionGETParser = reqparse.RequestParser()
-imageCaptionGETParser.add_argument("ID", type=list, help="include ID that were give to you while submitting the job" , required=True)
+imageCaptionGETParser.add_argument("ID", type=str, help="include ID that were give to you while submitting the job" , required=True)
 
 
 def getRandomID():
@@ -38,12 +38,14 @@ class imageCaptionTest(Resource):
 
 class imageCaption(Resource):
     def get(self):
+        request.get_json(force=True)
         args = imageCaptionGETParser.parser_args()
         return {"html" : get_parsed_html()}
 
     def post(self):    
+        request.get_json(force=True)
         args = imageCaptionPOSTParser.parse_args()
-        print(args.website)
+        print(args)
 
         # submit to some queing system 
         ID = submit_to_calculation()
