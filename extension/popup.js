@@ -1,22 +1,27 @@
-let changeColor = document.getElementById('changeColor');
+//let parser = require('mhtml-parser');
 
-chrome.storage.sync.get('color', function(data) {
-    changeColor.style.backgroundColor = data.color;
-    changeColor.setAttribute('value', data.color);
+document.addEventListener('DOMContentLoaded', function() {
+  var link = document.getElementById('trigger');
+  // onClick's logic below:
+  link.addEventListener('click', function() {
+    console.log("click registered");
+    chrome.tabs.query(
+      {active: true, lastFocusedWindow: true},
+      function(array_of_Tabs) {
+        if (array_of_Tabs.length > 0) {
+          var tab = array_of_Tabs[0];
+          console.log("submitMHTML() found the active tab has an ID of " + tab.id);
+          chrome.pageCapture.saveAsMHTML({tabId: tab.id}, function(mhtml) {
+              //const html = mhtml2html.convert(mhtml);
+              console.log(mhtml.text())
+              console.log("submitMHTML() sent mhtml to server");
+            }
+          )
+        }
+      }
+    );
   });
-
-
-var run_translation = 'console.log("xd");';
-
-
-changeColor.onclick = function(element) {
-  let color = element.target.value;
-  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    chrome.tabs.executeScript(
-        tabs[0].id,
-        {code: run_translation});
-  });
-};
+});
 
 
 

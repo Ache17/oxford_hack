@@ -1,9 +1,9 @@
 {
     "name" : "SMARTLook",
     "version" : "1.0",
-    "description" : "Converts iamges into text with machine learning",
+    "description" : "Converts images into text with machine learning",
     "manifest_version" : 2,
-    "permissions" : ["storage", "declarativeContent", "activeTab"],
+    "permissions" : ["storage", "declarativeContent", "activeTab", "pageCapture"],
     "background" : {
         "scripts" : ["background.js"],
         "persistent" : false
