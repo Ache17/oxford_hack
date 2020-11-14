@@ -6,6 +6,11 @@ from .preprocess import *
 
 # Create your views here.
 i = 0
+queue   = {}
+results = {}
+
+debug = True
+
 
 class TestView(APIView):
     def get(self, request):
@@ -18,13 +23,25 @@ class TestView(APIView):
 
 class Caption(APIView):
     def get(self, request):
-        print(request)
-        return Response({"lol" : "lol"})
+
+        ID = None
+        try:
+            ID = request.data["ID"]
+        except KeyError as e:
+            return Response({"help" : "ID must be specified"})
+
+        try:
+            result = results[ID]
+        except KeyError as e:
+            return Response({"help" : "ID is not valid or result is not valid", "done" : "no"})
+
+        
+        return Response({"result" : result, "done" : "yes"})
 
 
     def post(self, request):
-            global i
-        #try:
+        global i, results
+        try:
             # parse white chars
             mhtml = request.data['mhtml'].replace("\\r\\n", "\n")
             mhtml = mhtml.replace("\\t", "\t")
@@ -37,11 +54,19 @@ class Caption(APIView):
             
             f = open(filename, "w")
             f.write(data['mhtml'])
-            save_images(filename)
+            number_of_images = save_images(filename)
             i += 1
 
-            return Response({"message" : "task have been submmited sucessfully", 
-                            "ID" : getID()}, status="200")
+            ID = getID()
+            results[ID] = ["Lorem ipsum"] * number_of_images
 
-       # except Exception as e:
+            if debug:
+                print(ID)
+
+            return Response({"message" : "task have been submmited sucessfully",  "ID" : ID}, status="200")
+
+        except KeyError as e:
             return Response({"help" : "mhtml must be included ! "}, status="400")
+
+        except Exception as e:
+            return Response({"help" : "sorry the website couldn't be parsed"}, status="400")

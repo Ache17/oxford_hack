@@ -71,3 +71,4 @@ def save_images(file):
         config["data"] = data
         parsed.append(config)
     j += 1
+    return i
