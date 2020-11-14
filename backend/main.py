@@ -1,13 +1,17 @@
 from flask import Flask, jsonify, request
 from flask_restful import Resource, Api, reqparse
+from flask_cors import CORS, cross_origin
 from random import choice
 
 
 ID_size = 32
 
 app = Flask(__name__)
+cors = CORS(app)
 api = Api(app)
 parser = reqparse.RequestParser()
+
+app.config["CORS_HEADERS"] = "Content-Type"
 
 imageCaptionPOSTParser = reqparse.RequestParser()
 imageCaptionPOSTParser.add_argument("website", type=str, help="please include 'website' with source of the html to caption", required=True)
@@ -28,20 +32,24 @@ def submit_to_calculation():
 
 
 class imageCaptionTest(Resource):
+    @cross_origin()
     def get(self):
         return {"hello" : "world"}
 
+    @cross_origin()
     def post(self):
         args = parser.parse_args()
         return {"message" : "ok fine", "test" : "test"}, 201
 
 
 class imageCaption(Resource):
+    @cross_origin()
     def get(self):
         request.get_json(force=True)
         args = imageCaptionGETParser.parser_args()
         return {"html" : get_parsed_html()}
 
+    @cross_origin()
     def post(self):    
         request.get_json(force=True)
         args = imageCaptionPOSTParser.parse_args()
