@@ -19,6 +19,27 @@
         .sansserif {
             font-family: Arial, Helvetica, sans-serif;
         }
+        .footer {
+            width: 100%;
+            margin: 0px;
+            padding: 30px 90px 30px 90px;
+            background-color: #fadb14;
+        }
+        .contact-button {
+            background-color: #F2C218;
+            color: black;
+            border: none;
+        }
+        .contact-button:hover {
+            background-color: #EAA81B;
+            color: black;
+            border: none;
+        }
+        @media only screen and (max-width: 600px) {
+            .footer {
+                padding: 30px;
+            }
+        }
 	</style>
 </head>
 <body>
@@ -54,5 +75,17 @@
             </div>
         </div>
 	</div>
+
+    <div class="footer">
+        <h1 class="text-center">Super fancy name here</h1>
+
+        <p class="text-center lead">This chrome extension was develop during the Oxford Hack 2020 by team from The University of Manchester consisting of Maciej Lewandowski, Alex Constantin and Andrej Velichkovski.</p>
+
+        <div class="text-center">
+            <button class="btn btn-primary contact-button">Contact Maciej</button>
+            <button class="btn btn-primary contact-button">Contact Alex</button>
+            <button class="btn btn-primary contact-button">Contact Andrej</button>
+        </div>
+    </div>
 </body>
 </html>
