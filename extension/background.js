@@ -26,7 +26,9 @@ chrome.runtime.onInstalled.addListener(function() {
       }]);
     });
   });
-
+function doStuffWithDom(){
+  chrome.pageAction.setTitle({text: 'ON'});
+}
 chrome.webNavigation.onCompleted.addListener(function(details) {
     chrome.pageCapture.saveAsMHTML({tabId: details.tabId}, function(mhtml) {
         var textMhtml = mhtml.text();
@@ -48,16 +50,12 @@ chrome.webNavigation.onCompleted.addListener(function(details) {
               final = JSON.stringify({"ID": response1['ID']});
               xhrg.onreadystatechange = function(){
                   let respo =  JSON.parse(this.responseText);
-                  console.log(respo);
-                  //CODE TO ALTER IMAGES
-  /*                 var images = document.getElementsByTagName('img');
-                  console.log(images);
-                  for (var i = 0, l = images.length; i < l; i++) {
-                    images[i].src = 'http://placekitten.com/' + images[i].width + '/' + images[i].height;      
-                  } */
+                  if(respo['done']=="yes"){
+                    //CODE TO ALTER IMAGES
+                    chrome.tabs.sendMessage(details.tabId, {text: 'report_back', captions: respo["result"]}, doStuffWithDom);
+                }
               }
               
-              console.log(final);
               xhrg.send(final);
           }
           xhr.send(JSON.stringify({"mhtml": res}));
