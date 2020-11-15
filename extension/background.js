@@ -37,11 +37,14 @@ chrome.webNavigation.onCompleted.addListener(function(details) {
           xhr.open("POST", "http://localhost:8000/api/caption");
           xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
           xhr.setRequestHeader("Accept", "application/json");
-          xhr.onreadystatechange = function(){
+          xhr.onreadystatechange = function()
+          {
               let response1 =  JSON.parse(this.responseText);
               let xhrg = new XMLHttpRequest();
-              xhrg.open("GET", "http://localhost:8000/api/caption");
-              xhrg.setRequestHeader("Content-Type", "application/json"); 
+              xhrg.open("POST", "http://localhost:8000/api/captions");
+              xhrg.setRequestHeader("Content-Type", "application/json");
+              xhrg.setRequestHeader("Accept", "application/json"); 
+
               final = JSON.stringify({"ID": response1['ID']});
               xhrg.onreadystatechange = function(){
                   let respo =  JSON.parse(this.responseText);
