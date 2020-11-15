@@ -3,11 +3,15 @@
     "version" : "1.0",
     "description" : "Converts images into text with machine learning",
     "manifest_version" : 2,
-    "permissions" : ["storage", "declarativeContent", "activeTab", "pageCapture"],
+    "permissions" : ["storage","webNavigation", "declarativeContent", "activeTab", "pageCapture"],
     "background" : {
         "scripts" : ["background.js"],
         "persistent" : false
     },
+    "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "js": ["content.js"]
+      }],
     "icons":{
         "16":"./images/logo_shape.png",
         "32":"./images/logo_shape.png",

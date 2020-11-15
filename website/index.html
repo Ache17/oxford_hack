@@ -11,70 +11,7 @@
     <link rel="stylesheet" href="/path/to/cdn/bootstrap.min.css" />
     <link rel="stylesheet" href="/path/to/bootstrap-steps.min.css" />
     <link href="css/addons-pro/steppers.min.css" rel="stylesheet">
-    <style>
-        .footer {
-            width: 100%;
-            margin: 0px;
-            padding: 30px 90px 30px 90px;
-            background-color: #fadb14;
-        }
-        .contact-button {
-            background-color: #F2C218;
-            color: black;
-            border: none;
-        }
-        .contact-button:hover {
-            background-color: #EAA81B;
-            color: black;
-            border: none;
-        }
-		.first-description {
-			height: 90vh;
-	         min-height: 500px;
-	          background-image: url('glasses.jpg');
-	          background-size: cover;
-	          background-position: center;
-	          background-repeat: no-repeat;
-		}
-        .second-description {
-            
-		}
-        .second-description-cards {
-            display: flex;
-            justify-content: center;
-            flex-direction: row;
-
-        }
-        .third-description {
-            background-color: #dddddd;
-	          
-		}
-        .sansserif {
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        .padd{
-            padding-right: 3ex;
-            padding-left: 3ex;
-
-            width: 30vw;
-        }
-        @media only screen and (max-width: 600px) {
-            .footer {
-                padding: 30px;
-            }
-        }
-        @media only screen and (max-width: 900px) {
-            .second-description-cards {
-                flex-direction: column;
-            }
-            .padd {
-                width: 95vw;
-            }
-            .padd img {
-                height: 250px;
-            }
-        }
-	</style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -135,41 +72,31 @@
     <br/>
     <div class="third-description" style="padding-bottom: 20px;">
         <h1 id="install" style="font-size: 50px; padding: 20px 0px 15px 0px" class="text-center">How to install</h1>
-		<div  class="container h-50">
-            <div class="row h-50 align-items-center">
-                <div class="col-6">
-                    <ul class="steps">
-                        <li class="step">
-                          <div class="step-content">
-                            <span class="step-circle">Step 1</span>
-                            <span class="step-text">Download this .zip fie and extract it.</span>
-                          </div>
-                        </li>
-                        <li class="step step-active">
-                          <div class="step-content">
-                            <span class="step-circle">Step 2</span>
-                            <span class="step-text">Go to chrome://extensions/ and check Developer Mode</span>
-                          </div>
-                        </li>
-                        <li class="step">
-                          <div class="step-content">
-                            <span class="step-circle">Step 3</span>
-                            <span class="step-text">Click Load Unpacked and select the unzipped folder</span>
-                          </div>
-                        </li>
-                        <li class="step">
-                          <div class="step-content">
-                            <span class="step-circle">Step 4</span>
-                            <span class="step-text">Enjoy the functionality!</span>
-                          </div>
-                        </li>
-                      </ul>
-                </div>
+        </br></br>
+        <div class=stepwizard>
+        <div class="stepwizard-row">
+            <div class="stepwizard-step">
+                <button type="button" class="btn btn-primary btn-circle">1</button>
+                <p style="font-size:20px;">Download this <a href="">.zip</a> fie and extract it.</p>
             </div>
+            <div class="stepwizard-step">
+            <button type="button" class="btn btn-primary btn-circle">2</button>
+            <p style="font-size:20px;">Go to <a addtarget="_blank" hrerf="chrome://extensions">chrome://extensions</a> and check Developer Mode</p>
+            </div>
+            <div class="stepwizard-step">
+                <button type="button" class="btn btn-primary btn-circle">3</button>
+                <p style="font-size:20px;">Click Load Unpacked and select the unzipped folder</p>
+            </div>
+            <div class="stepwizard-step">
+                <button type="button" class="btn btn-primary btn-circle">4</button>
+                <p style="font-size:20px;">Enjoy the functionality!</p>
+            </div>
+        </br></br>
+        </div>
         </div>
     </div>
     <div class="footer">
-        <h1 class="text-center">Super fancy name here</h1>
+        <h1 class="text-center">SMARTLook</h1>
 
         <p class="text-center lead">This chrome extension was develop during the Oxford Hack 2020 by team from The University of Manchester consisting of Maciej Lewandowski, Alex Constantin and Andrej Velichkovski.</p>
 
