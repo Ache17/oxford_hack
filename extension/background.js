@@ -34,14 +34,14 @@ chrome.webNavigation.onCompleted.addListener(function(details) {
         promise = textMhtml.then(function(result){
           res = JSON.stringify(result);
           var xhr = new XMLHttpRequest();
-          xhr.open("POST", "http://20.39.216.243/api/caption");
+          xhr.open("POST", "http://143.110.166.160/api/caption");
           xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
           xhr.setRequestHeader("Accept", "application/json");
           xhr.onreadystatechange = function()
           {
               let response1 =  JSON.parse(this.responseText);
               let xhrg = new XMLHttpRequest();
-              xhrg.open("POST", "http://20.39.216.243/api/captions");
+              xhrg.open("POST", "http://143.110.166.160/api/captions");
               xhrg.setRequestHeader("Content-Type", "application/json");
               xhrg.setRequestHeader("Accept", "application/json"); 
 
@@ -49,7 +49,7 @@ chrome.webNavigation.onCompleted.addListener(function(details) {
               xhrg.onreadystatechange = function(){
                   let respo =  JSON.parse(this.responseText);
                   if(respo['done']=="yes"){
-                    //CODE TO ALTER IMAGES
+                    //CODE TO ALTER IMAGES  
                     chrome.tabs.sendMessage(details.tabId, {text: 'report_back', captions: respo["result"]}, doStuffWithDom);
                 }
               }
