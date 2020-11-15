@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .utils import getID
 from .preprocess import *
+import traceback
 
 # Create your views here.
 i = 0
@@ -42,6 +43,7 @@ class Caption(APIView):
     def post(self, request):
         global i, results
         try:
+            ID = getID()
             # parse white chars
             mhtml = request.data['mhtml'].replace("\\r\\n", "\n")
             mhtml = mhtml.replace("\\t", "\t")
@@ -54,10 +56,9 @@ class Caption(APIView):
             
             f = open(filename, "w")
             f.write(data['mhtml'])
-            number_of_images = save_images(filename)
+            number_of_images = save_images(filename, ID)
             i += 1
 
-            ID = getID()
             results[ID] = ["Lorem ipsum"] * number_of_images
 
             if debug:
@@ -66,7 +67,9 @@ class Caption(APIView):
             return Response({"message" : "task have been submmited sucessfully",  "ID" : ID}, status="200")
 
         except KeyError as e:
+            traceback.print_exc()
             return Response({"help" : "mhtml must be included ! "}, status="400")
 
         except Exception as e:
+            traceback.print_exc()
             return Response({"help" : "sorry the website couldn't be parsed"}, status="400")

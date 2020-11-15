@@ -3,8 +3,15 @@ from string import ascii_lowercase, ascii_uppercase
 import re
 import base64
 import os
+from os.path import join
 
 j = 0 
+image_root = "parsed"
+
+try: 
+    os.mkdir(image_root)
+except Exception as e:
+    pass
 
 
 base64chars = ascii_lowercase + ascii_uppercase + "0123456789+/="
@@ -18,13 +25,14 @@ def preprocess_base64(data):
             pre.append(el)
     return "".join(pre)
 
-def save_images(file):
+def save_images(file, ID):
     global i, j
     f = open(file, "r").read()
     lines = [line.strip() for line in f.split("\n")]
     boundary = [line for line in lines if line.startswith('boundary')]
     pattern = boundary[0].split("=")[1][1:-1]
     content = f.split(pattern)
+    folder_path = join(image_root,f"{ID}")
 
     content_parsed = []
 
@@ -37,9 +45,10 @@ def save_images(file):
     parsed = []
     img_data = []
     try:
-        os.mkdir(f"images_{j}")
+        os.mkdir(folder_path)
     except Exception as e:
         pass
+
 
     i = 0  
     for c in content_parsed[1:]:
@@ -63,7 +72,7 @@ def save_images(file):
             for e in supported_extensions:
                 if config["Content-Type"].endswith(e):
                     raw = base64.b64decode(preprocess_base64(data))
-                    img_handle = open(f"images_{j}/img{i}.{e}", "wb")
+                    img_handle = open(join(folder_path, f"img{i}.{e}"), "wb")
                     img_handle.write(raw)   
                     i += 1
                     break
