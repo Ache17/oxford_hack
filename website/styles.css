@@ -14,6 +14,13 @@
     color: black;
     border: none;
 }
+
+
+.c-buttons a {
+    text-decoration: none;
+    color: black;
+}
+
 .first-description {
     height: 90vh;
      min-height: 500px;
