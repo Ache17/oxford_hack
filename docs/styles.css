@@ -2,15 +2,15 @@
     width: 100%;
     margin: 0px;
     padding: 30px 90px 30px 90px;
-    background-color: #fadb14;
+    background-color: #3784C6;
 }
 .contact-button {
-    background-color: #F2C218;
+    background-color: #3873A9;
     color: black;
     border: none;
 }
 .contact-button:hover {
-    background-color: #EAA81B;
+    background-color: #38618C;
     color: black;
     border: none;
 }
