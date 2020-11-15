@@ -5,6 +5,9 @@ from .utils import getID
 from .preprocess import *
 import traceback
 
+import os
+from .inference import evaluate
+
 # Create your views here.
 i = 0
 queue   = {}
@@ -59,12 +62,22 @@ class Caption(APIView):
             number_of_images = save_images(filename, ID)
             i += 1
 
-            results[ID] = ["Lorem ipsum"] * number_of_images
+            #results[ID] = ["Lorem ipsum"] * number_of_images
+            results[ID] = []
+
+            idPath = './parsed/' + str(ID)
+            pictureNames = list(sorted(os.listdir(idPath)))
+
+            for pName in pictureNames:
+                picturePath = './parsed/' + str(ID) + '/' + pName
+                currentPrediction = evaluate(picturePath)[:-1]
+                results[ID].append(' '.join(currentPrediction))
 
             if debug:
+                print(results[ID])
                 print(ID)
 
-            return Response({"message" : "task have been submmited sucessfully",  "ID" : ID}, status="200")
+            return Response({"message" : "task have been submmited sucessfully",  "ID" : ID, "results": results}, status="200")
 
         except KeyError as e:
             traceback.print_exc()
