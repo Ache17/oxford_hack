@@ -28,11 +28,6 @@
             color: black;
             border: none;
         }
-        @media only screen and (max-width: 600px) {
-            .footer {
-                padding: 30px;
-            }
-        }
 		.first-description {
 			height: 90vh;
 	         min-height: 500px;
@@ -42,18 +37,17 @@
 	          background-repeat: no-repeat;
 		}
         .second-description {
-			height: 60vh;
-	         min-height: 300px;
-	          background-size: cover;
-	          background-position: center;
-	          background-repeat: no-repeat;
+            
 		}
+        .second-description-cards {
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+
+        }
         .third-description {
-			height: 60vh;
-	         min-height: 300px;
-	          background-size: cover;
-	          background-position: center;
-	          background-repeat: no-repeat;
+            background-color: #dddddd;
+	          
 		}
         .sansserif {
             font-family: Arial, Helvetica, sans-serif;
@@ -61,6 +55,24 @@
         .padd{
             padding-right: 3ex;
             padding-left: 3ex;
+
+            width: 30vw;
+        }
+        @media only screen and (max-width: 600px) {
+            .footer {
+                padding: 30px;
+            }
+        }
+        @media only screen and (max-width: 900px) {
+            .second-description-cards {
+                flex-direction: column;
+            }
+            .padd {
+                width: 95vw;
+            }
+            .padd img {
+                height: 250px;
+            }
         }
 	</style>
 </head>
@@ -94,44 +106,38 @@
             </div>
         </div>
     </div>
-    <div class="second-description ">
-		<div class="container h-75">
-            <br/>
-            <h1 id="about" style="font-size: 45px;color: #fadb14;">About</h1>
-            <br/>
-            <div class="row h-75 align-items-center">
-                
-                <div class="col-md-4 card padd">
-                    <img class="card-img-top" height="180" src="integration.jpg" alt="Increase Inclusivity"></img>
-                    <div class="card-body">
-                        <h5 class="card-title">Increases Inclusivity</h5>
-                        <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-                    </div>
+    <div class="second-description">
+        <h1 id="about" style="font-size: 50px;color: #fadb14; padding: 20px 0px 20px 0px" class="text-center">About</h1>
+        <div class="second-description-cards">
+            <div class="padd">
+                <img class="card-img-top" height="180" src="integration.jpg" alt="Increase Inclusivity"></img>
+                <div class="card-body">
+                    <h5 class="card-title">Increases Inclusivity</h5>
+                    <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
                 </div>
-                <div class="col-md-4 card padd">
-                    <img class="card-img-top" height="180" src="badpracti.jpg" alt="Increase Inclusivity"></img>
-                    <div class="card-body">
-                        <h5 class="card-title">Fixing Bad Practises</h5>
-                        <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-                    </div>
-                </div> 
-                <div class="col-md-4 card padd">
-                    <img class="card-img-top" height="180" src="deeplearn.jpg" alt="Increase Inclusivity"></img>
-                    <div class="card-body">
-                        <h5 class="card-title">Deep Learning</h5>
-                        <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text  </p>
-                    </div>
-                </div> 
             </div>
+            <div class="padd">
+                <img class="card-img-top" height="180" src="badpracti.jpg" alt="Increase Inclusivity"></img>
+                <div class="card-body">
+                    <h5 class="card-title">Fixing Bad Practises</h5>
+                    <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
+                </div>
+            </div> 
+            <div class="padd">
+                <img class="card-img-top" height="180" src="deeplearn.jpg" alt="Increase Inclusivity"></img>
+                <div class="card-body">
+                    <h5 class="card-title">Deep Learning</h5>
+                    <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text  </p>
+                </div>
+            </div> 
         </div>
     </div>
     <br/>
-    <div class="third-description">
+    <div class="third-description" style="padding-bottom: 20px;">
+        <h1 id="install" style="font-size: 50px; padding: 20px 0px 15px 0px" class="text-center">How to install</h1>
 		<div  class="container h-50">
             <div class="row h-50 align-items-center">
                 <div class="col-6">
-                    <h1 id="install" style="font-size: 50px;color: #fadb14;">How to install</h1>
-                    <br/>
                     <ul class="steps">
                         <li class="step">
                           <div class="step-content">
