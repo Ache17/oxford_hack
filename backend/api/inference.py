@@ -157,7 +157,7 @@ if ckpt_manager.latest_checkpoint:
   ckpt.restore(ckpt_manager.latest_checkpoint)
   print("LOADED")
 
-print("STARTING FROM EPOCH " + str(start_epoch))
+print("STARTING FROM CHECKPOINT " + str(start_epoch))
 
 max_length = 15
 
