@@ -1,4 +1,5 @@
 # lol no working parser on the net for the mhtml 
+# so here is the barery working one ( terrible code ) 
 from string import ascii_lowercase, ascii_uppercase
 import re
 import base64
